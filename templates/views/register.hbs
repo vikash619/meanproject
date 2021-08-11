@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #34495e;
+            font-family: sans-serif;
+        }
+
+        .box{
+            width: 600px;
+            padding: 20px;
+            position: absolute;
+            top: 47%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            background-color: #191919;
+            text-align: center;
+        }
+
+        .box h1{
+            color: white;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        .box input[type="text"], .box input[type="password"], .box input[type="email"], .box input[type="number"] {
+            border: 0;
+            background: none;
+            display: block;
+            margin: 20px auto;
+            text-align: center;
+            border: 2px solid #3498db;
+            padding: 14px 10px;
+            width: 200px;
+            outline: none;
+            color: white;
+            border-radius: 24px;
+            transition: 0.25s;
+        }
+
+        .box input[type="text"]:hover, .box input[type="password"]:hover, .box input[type="email"]:hover{
+            width: 280px;
+            border-color: #2ecc71;
+        }
+
+        
+
+        .box input[type="submit"]{
+            border: 0;
+            background: none;
+            display: block;
+            margin: 20px auto;
+            text-align: center;
+            border: 2px solid #2ecc71;
+            padding: 14px 10px;
+            width: 200px;
+            outline: none;
+            color: white;
+            border-radius: 24px;
+            transition: 0.25s;
+        }
+
+        .box input[type="submit"]:hover{
+            background: #2ecc71 ;
+        }
+
+    </style>
+</head>
+<body>
+    
+    {{!-- <table>
+        <form action="/register" method="POST">
+
+            <tr>
+                <td>
+                    <label for="firstname">Firstname : </label>
+                </td>
+                <td>
+                    <input type="text" name="firstname">
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label for="lastname">Lastname : </label>
+                </td>
+                <td>
+                    <input type="text" name="lastname">
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label for="email">Email : </label>
+                </td>
+                <td>
+                    <input type="email" name="email">
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label for="gender">Gender : </label>
+                </td>
+                <td>
+                    <span>Male</span>
+                    <input type="radio" name="gender" value="male">
+                    
+                    <span>Female</span>
+                    <input type="radio" name="gender" value="female">
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label for="phone">Phone : </label>
+                </td>
+                <td>
+                    <input type="text" name="phone">
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label for="age">Age : </label>
+                </td>
+                <td>
+                    <input type="number" name="age">
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label for="password">Password : </label>
+                </td>
+                <td>
+                    <input type="password" name="password">
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label for="confirmpassword">Confirm Password : </label>
+                </td>
+                <td>
+                    <input type="password" name="confirmpassword">
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <input type="submit" value="register">
+                </td>
+            </tr>
+
+        </form>
+    </table> --}}
+    <form action="/register" method="POST" class="box">
+        <h1>Register</h1>
+        <input type="text" name="firstname" placeholder="Enter your username">
+        <input type="text" name="lastname" placeholder="Enter your lastname">
+        <input type="email" name="email" placeholder="Enter your email" class="Email"> <br>
+        <span>Male</span>
+        <input type="radio" name="gender" value="male">
+        <span>Female</span>
+        <input type="radio" name="gender" value="female">
+        <input type="text" name="phone" placeholder="Enter your Number">
+        <input type="number" name="age" placeholder="Enter your Age">
+        <input type="password" name="password" placeholder="Enter your Password">
+        <input type="password" name="confirmpassword" placeholder="Confirm your Password">
+
+        <input type="submit" value="Register">
+    </form>
+</body>
+</html>
