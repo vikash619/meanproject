@@ -7,6 +7,8 @@ const path = require("path");
 const hbs = require("hbs");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const cookieParser = require("cookie-parser");
+const auth = require('./middleware/auth');
 const port = process.env.PORT || 3000;
 
 
@@ -15,6 +17,7 @@ const templates_path = path.join(__dirname, "../templates/views");
 const partials_path  = path.join(__dirname, "../templates/partials");
 
 app.use(express.json());
+app.use(cookieParser());
 app.use(express.urlencoded({extended:false}));
 
 app.use(express.static(static_path));
@@ -24,6 +27,11 @@ hbs.registerPartials(partials_path);
 
 app.get("/",(req,res)=>{
     res.render("index");
+})
+
+app.get("/secret",(req,res)=>{
+    // console.log(`this is cookies ${req.cookies.jwt}`);
+    res.render("secret");
 })
 
 app.get("/login",(req,res)=>{
@@ -52,7 +60,14 @@ app.post("/register", async (req,res)=>{
             })
 
             console.log("the success part "+ registerEmployee);
+
             const token  = await registerEmployee.generateAuthToken();
+            console.log("the token part "+ token);
+
+            res.cookie("jwt", token, {
+                expires: new Date(Date.now() + 600000),
+                httpOnly:true
+            });
             const registered = await registerEmployee.save();
 
             console.log("the page part "+ registered);
@@ -76,6 +91,13 @@ app.post('/login', async (req,res)=>{
 
         const token = await useremail.generateAuthToken();
         console.log("the token part "+token);
+
+        res.cookie("jwt", token, {
+            expires:new Date(Date.now()+ 600000),
+            httpOnly:true,
+            // secure:true
+        })
+
         if(isMatch){
             res.status(200).render("index");
         }else{
