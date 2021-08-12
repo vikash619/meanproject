@@ -29,9 +29,32 @@ app.get("/",(req,res)=>{
     res.render("index");
 })
 
-app.get("/secret",(req,res)=>{
+app.get("/secret", auth , (req,res)=>{
     // console.log(`this is cookies ${req.cookies.jwt}`);
     res.render("secret");
+})
+
+app.get("/logout", auth, (req,res)=>{
+    try{
+        
+        //single device logout
+        // console.log(req.user);
+
+        // req.user.tokens = req.user.tokens.filter((currElement)=>{
+        //     return currElement.token != req.token;
+        // })
+
+        //all device logout
+        req.user.tokens = [];
+        res.clearCookie("jwt");
+
+
+        console.log("logout successfully");
+        await = req.user.save();
+        res.render("login");
+    }catch(error){
+        res.status(500).send("error in logout");
+    }
 })
 
 app.get("/login",(req,res)=>{
